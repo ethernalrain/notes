@@ -1,0 +1,21 @@
+1) hostname: 
+
+Search within a given hostname, ex; 
+
+	hostname:"targetname.com"
+
+2) content-type: 
+
+Search for documents / API responses mentioning particular content-type. userful for discovering API endpoints. Ex: 
+
+	content-type:application/json 
+
+3) "200 OK" 
+
+Search for a specific HTTP response code 
+
+4) "wp-json" 
+
+Search for pages with "wp-json" in the URL 
+
+

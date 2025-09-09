@@ -1,0 +1,9 @@
+
+$ nslookup 
+> hostname.domain 
+	... some details 
+> set type=mx
+> hostname.domain 
+	... some MX details ... 
+
+

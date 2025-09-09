@@ -1,0 +1,25 @@
+== UWF == 
+
+apt install ufw 
+
+ufw status 
+
+ufw default deny|allow incoming|outgoing 
+ufw default <policy> <chain>
+
+configs: /etc/default/ufw 
+
+ufw enable 
+
+ufw allow ssh 
+
+ufw allow 4422/tcp 
+
+ufw [rule] [target]
+ufw [rule] in [target]
+ufw [rule] out [target]
+
+ufw app list 
+
+ufw [rule] from [ip] 
+

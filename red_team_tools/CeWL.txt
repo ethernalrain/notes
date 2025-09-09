@@ -1,0 +1,8 @@
+CeWL -- password gathering tool for the wordlist 
+
+Scans website for varius words mentioned and generates the wordlist for password attacks 
+
+cewl -w wordlist.txt -d 1 -m 5 https://website 
+
+-d -- max depth 
+-m -- min word length 

@@ -1,0 +1,9 @@
+=== John The Ripper === 
+
+Offline password attack tool 
+
+$ john hashes.txt 
+
+Note: *meterpreter*'s command hashdump dumps the system's password hashes. 
+
+Notes: Windows hashes can be recovered with bkhive, samdump2 tools

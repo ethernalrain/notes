@@ -1,0 +1,5 @@
+The Harvester 
+
+Searches for email addresses on the website / domain 
+
+theHarvester -d <domain> -l 500 -b all 

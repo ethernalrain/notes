@@ -1,0 +1,9 @@
+== UI Tool for OSINT == 
+
+www.maltego.com 
+
+"Social Engineers Tool Of Choise" 
+
+Finds connected social media profiles, etc. 
+
+Just install it and run. 

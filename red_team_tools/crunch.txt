@@ -1,0 +1,17 @@
+crunch -- 'this toold could have been a python one-liner' 
+
+generate a password list basd on the given charset 
+
+$ crunch 7 7 AB 
+
+Outputs: 
+
+ AAAAAAA
+ AAAAAAB 
+ .......
+ BBBBBBB
+
+Arguments: 
+	min len
+	max len
+	full set of symbols to use

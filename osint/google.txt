@@ -1,0 +1,40 @@
+1) Search in the page titles: 
+	
+	intitle:<text>
+
+examples:
+	intitle:"index of"
+	intitle:"index of" api_key OR "api_key"
+
+
+2) Search in the page URL 
+
+	inurl:<text> 
+
+Examples: 
+	
+	inurl:"/wp-json/wp/v2/users"
+	inurl:"/includes/api" intext:"index of /"
+
+3) Search for a specific file type 
+
+	filetype:<type>
+
+Examples: 
+	1984 filetype:pdf 
+
+4) Page name extension 
+	
+	ext:<ext>
+
+Examples: 
+	ext:php inurl:"api.php?action="
+
+
+5) Search for information on a specific site 
+
+	site:<hostname> 
+
+Example: 
+	linux is the best site:microsoft.com 
+

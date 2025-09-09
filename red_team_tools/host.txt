@@ -1,0 +1,10 @@
+'host' -- standard linux tool is quite useful in red-teaming too 
+
+$ host -t ns zoneedit.com 
+
+	.. gives all the ns servers .. 
+
+$ host -l zoneedit.com ns.zoneedit.com 
+
+	.. zone transfer .. 
+

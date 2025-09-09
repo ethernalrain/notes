@@ -1,0 +1,25 @@
+== Encrypt the home folder == 
+
+apt install ecryptfs-utils cryptsetup 
+
+Create a new temp user - user2
+	sudo adduser user2 
+	sudo usermod -aG sudo user2 
+
+login as user2 
+
+sudo ecryptfs-migrate-home -u user1 # where user1 is the main user 
+
+save the recovery passphrase into some safe location: 
+login as user1 and: 
+
+ecryptfs-unwrap-passphrase 
+
+ALWAYS login as the user, whose home was just encrypted before the reboot - to complete the migration 
+
+
+== Encrypt the home for the new user during creation == 
+
+sudo adduser --encrypt-home user3 
+
+

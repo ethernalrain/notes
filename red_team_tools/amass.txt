@@ -1,0 +1,40 @@
+==== AMASS ==== 
+Tool that allows searching for relevant intel, related hosts, domains, etc.
+
+0) apt install amass
+(not required if using Kali - it comes with it)
+ 
+
+1) First - get an example config.ini 
+	from https://raw.githubusercontent.com/OWASP/Amass/master/examples/config.ini 
+
+2) Copy into ~/.config/amass 
+
+3) Review the config.ini and register API keys for mentioned free services; update the config accordingly 
+
+
+== Usage == 
+
+1) Passive scan (not engaging with tgt) 
+
+	amass enum -passive -d <hostname> 
+
+2) Active scan 
+	
+	amass enum -active -d <hostname> 
+
+3) Brute force relevant sub-domains with names from the file, saving results into the given dir
+
+	amass -enum -active -brute -w <wordlist_file> -d <taget_domain> --dir <directory> 
+
+4) Visualize the result from above 
+	
+	amass viz -enum -d3 -dir <dir> 
+
+5) Scan for intel by IP 
+
+	amass intel --addr <IP>
+
+6) Scan for intel by domain name, including whois data 
+
+	amass intel -d <target-domain> -whois 
