@@ -1,0 +1,8 @@
+==== BURP SUITE ====
+
+MEGA UI tool for web-app analysis 
+
+Configure the browser to proxy http/https traffic through Burp and enjoy! 
+
+(Or use the built-in browser)
+

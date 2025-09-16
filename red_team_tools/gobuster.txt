@@ -5,3 +5,7 @@ A tool for enumerating directories, subdmains, etc.
 $ gobuster dir -u http://abc.com:8080 -w /path/to/wordlist/file 
 
 Ignore certain error code
+	-b 302 
+
+positive status codes
+	-s 200-202,301

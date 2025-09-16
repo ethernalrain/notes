@@ -1,0 +1,156 @@
+== Sn1per == 
+
+Vulnerability scanner (big and heavy, all in one, includes many packages by default) 
+
+1) Installation 
+
+	git clone https://github.com/1N3/Sn1per
+	cd Sn1per 
+	bash install.sh 
+
+2) Usage 
+	
+* Normal mode 
+	sniper -t <Tgt> 
+
+* Normal mode + OSINT + RECON 
+	sniper -t <Tgt> -o -re 
+
+* Stealth mode + OSINT + RECOND 
+	sniper -t <Tgt> -m stealth -o -re 
+
+* Discover mode 
+	snipre -t <CIDR> -m discover -w <workspace_alias> 
+
+* Scan only specific ports 
+	sniper -t <Tgt> -m port -p <portnum> 
+
+* Full port only scan 
+	sniper -t <tgt> -fp 
+
+* WEB mode -port 80+443 only 
+	sniper -t <tgt> -m web 
+
+* HTTP webport mode 
+	sniper -t <Tgt> -m webporthttp -p <port> 
+
+* HTTPS webport mode 
+	sniper -t <Tgt> -m webporthttps -p <port> 
+
+* HTTP webscan mode 
+	sniper -t <Tgt> -m webscan 
+
+* Enable BRUTEFORCE 
+	sniper -t <Tgt> -b 
+
+* "Air Strike Mode"
+	sniper -t targets.txt -m airstrike 
+
+* "Nuke" mode (with targets list, bruteforce enabled, full port scan, OSINT, recon, workspace) 
+	sniper -t targets.txt -m nuke -w <workspace_name> 
+
+* Mass port scan 
+	snipre -t targets.txt -m massportscan 
+
+* Mass web scan 
+	sniper -t targets.txt -m massweb 
+
+* Mass webscan scan mode 
+	sniper -t targets.txt -m masswebscan 
+
+* Mass Vuln Scan mode 
+	sniper -t targets.txt -m massvulnsscan 
+
+
+* List workspaces 
+	sniper --list 
+
+* Delete workspace 
+	sniper -w <workspace_name> -d 
+
+* Delete host from workspace 
+	sniper -w <workspace_name> -t <target> -dh 
+
+
+** Get Sniper Scan Status 
+
+	sniper --status 
+
+** Update Sniper 
+
+	sniper -u | --update 
+
+
+* Use custom config 
+	-c /path/to/config.conf 
+
+
+* Schedule Scans 
+	
+	sniper -w <workspace_alias> -s daily|weekly|monthly 
+
+* Loot reimport function 	
+	sniper -w <workspace_alias> --reimport 
+
+* Loot reimport all 
+	sniper -w <workspace_alias> --reimport-all 
+
+* Loot reload 
+	sniper -w <workspace_alias> --reload 
+
+* Loot export 
+	sniper -w <workspace_alias> --export 
+
+
+
+==== MODES DESCRIPTION ==== 
+(actual mode name should be lower case in '-m')
+
+NORMAL 
+	basic scan of targets and open ports, both active and passive for optimal performance 
+
+STEALTH 
+	quickly enumerate single target using mostly non-intrusive scan to avoid WAF/IPS blocking 
+FLYOVER 
+	fast MT high level scan of multiple targets 
+
+AIRSTRIKE 
+	quickly enumerate open ports and services, and perform basic fingerprint 
+
+NUKE 
+	launches a full audit of multiple hosts specified in a text file 
+
+DISCOER 
+	parses all hosts on the subnet / CIDR (i.e. 192.168.0.0/16) and initiates a sniper 
+	scan against each host  
+
+PORT 
+	scan specific port 
+
+FULLPORTONLY 
+	performs a full detailed port scan and saves into XML
+
+MASSPORTSCAN 
+	runs 'FULLPORTONLY' on multiple targets 
+
+WEB 
+	adds full automatic web application scan (80+443 ports only) to the result. 
+	May increase scan time 
+
+MASSWEB 
+	runs 'WEB' on multiple targets 
+
+WEBPORTHTTP(S) 
+	Launches a full HTTP(S) web application scan against a specific host or host's port
+
+WEBSCAN 
+	Launches a ful HTTP/HTTPS web application scan against the target via burp / arachai 
+
+MASSWEBSCAN 
+	WEBSCAN on multiple targets 
+
+VULNSCAN 
+	Launches a OpenVAS vulnerability scan 
+
+MASSVULNSCAN 
+	- 'vulnscan' on multiple targets 

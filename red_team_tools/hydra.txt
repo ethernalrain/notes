@@ -6,3 +6,4 @@ $ hydra -L userlist.txt -P passwordfile.txt 192.168.1.100 pop3
 
 $ hydra -l user1 -P passwordfile.txt 192.168.1.101 pop3 
 
+$ hydra -l root -P passwordfile.txt -u -e n -s 22 somehost.com ssh 

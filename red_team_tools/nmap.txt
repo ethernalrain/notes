@@ -1,0 +1,78 @@
+==== nmap ==== 
+
+Everyone knows what nmap is for 
+
+
+== Simple scan == 
+
+nmap <host> 
+
+== Run detection of service types == 
+
+nmap -sC -sV <target> 
+
+== Save the result to the file == 
+
+	-oA <name>		-- save all formats 
+	-oX <name>		-- save xml format 
+	-oN <name>		-- save nmap format 
+	-oG <name>		-- save greppable format 
+
+== Scan all ports 1-65535 ==
+
+nmap -p- <target>
+
+== Scan IP range == 
+
+nmap -sS 192.168.1.10-25 
+
+== Scan Port/Ranges == 
+
+nmap -p 22 <target>
+nmap -p 1-1000 <target> 
+nmap -p 1,2,3 <target> 
+
+== Scan modes == 
+
+	-sS 	Syn scan. Sends SYN, don't send the final ACK in the TCP handshake 
+		TCP conn is never open 
+
+	-sT 	Simple TCP connect scan 
+
+	-sU 	UDP scan 
+
+	-sN 	Null TCP scan (no flags in the header) 
+
+	-sF 	FIN scan 
+
+	-sX 	Xmas scan (all flags light up - FIN,PUSH,URG,etc..)
+
+	-sC 	Run all the default SW detection scripts 
+
+	-sV 	run version detection 
+
+
+
+== Nmap Scripts!!! ==
+
+Location: /usr/share/nmap/scripts 
+
+Get info about scripts in "default" category: 
+	
+	nmap --script-help default 
+
+Run particular script 
+
+	nmap --script=nmfs-ls 192.168.1.100 
+
+Run all scripts in the category (e.g. auth)
+
+	nmap --script=auth 
+
+(other categories: default, safe, auth)
+
+Script args: 
+
+	--script-args n1=v2,n2=v2,...
+
+	

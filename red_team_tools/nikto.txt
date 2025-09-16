@@ -1,0 +1,14 @@
+== Nikto == 
+
+Web vulnerability scanner. Included with Kali! 
+
+== Scan host == 
+
+nikto -h http://12.13.14.15:8080 
+nikto -h 12.13.14.15:8080b
+nikto -h 12.13.14.15
+
+== Proxy == 
+
+nikto -host www.example.com -userproxy http://localhost:8080/
+

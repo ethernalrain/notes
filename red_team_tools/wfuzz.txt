@@ -1,0 +1,34 @@
+== wfuzz == 
+
+HTTP Fuzzer 
+Included with Kali. 
+Latest ver at: https://github.com/xmendez/wfuzz
+
+== Usage Examples == 
+
+wfuzz -d '{"email":"a@host.com","password":"FUZZ"}' --hc 405 -H 'Content-Type: application/json' -z file,/dictionary/rockyou.txt https://12.23.34.45:8910/api/auth 
+
+    -d specifies POST data 
+    
+    Any strings FUZZ, FUZ2Z, etc will be replaced by the fuzzing payload 
+
+    --hc - "hide code", ignores particular response codes 
+
+    -z - payload, from file in this example above 
+
+
+Other options: 
+    
+    -X PUT  - use HTTP put method instead 
+
+	-X FUZZ - fuzz HTTP methods themselves 
+
+	-p Proxy, e.g.: 
+			-p 127.0.0.1:8080 
+
+	-z list,GET-HEAD-POST 
+		- payload give as the list 
+
+	-u URL to attack 
+
+ 
