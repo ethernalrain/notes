@@ -1,0 +1,31 @@
+htpasswd -c /etc/squid3_passwords USERNAME
+
+
+squi.dconf:
+
+auth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid3_passwords
+auth_param basic realm proxy
+acl authenticated proxy_auth REQUIRED
+http_access allow authenticated
+http_access deny all
+dns_v4_first on
+forwarded_for delete
+via off
+
+
+http_port 3128
+
+
+
+To disable logging:
+
+
+#To disable access log, edit /etc/squid/squid.conf file:
+​access_log none
+
+#To disable store log, edit /etc/squid/squid.conf file:
+cache_store none
+
+#To disable cache log, edit /etc/squid/squid.conf file again:
+cache_log /dev/null
+logfile_rotate 0

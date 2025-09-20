@@ -11,26 +11,28 @@ $ sudo ln -s $(pwd)/dist/kr /usr/local/bin/kr
 == Perform a quick scan == 
 
 kr scan http://192.168.1.2 -w /path/to/kiterunner/routes-large.kite 
+kr scan http://192.168.1.2 -w ~/api/data/kiterunner/routes-large.kite
 
 
 == Scan using text file list == 
 
 kr brute http://192.168.1.2 -w /path/to/wordlist/file.txt 
+kr brute http://1.2.3.4:8080 -w /path/to/wordlist/file.txt
 
 
 == Replay particular requests == 
 
 - Copy the whole output line from kr scan log 
 
-kr kb replay "GET 411 [182,10]...." -w /path/to/wordlist.kite 
+kr kb replay "GET   411 [ 182, 6, 10] http://....." -w /path/to/wordlist.kite 
 
 
 == Scan (quick) with an extra http token (or any other header) == 
 
-kr scan http://192.168.1.2 -w /path/to/routes-large.kite -H "Acces-Token: ABCDEF..." 
+kr scan http://192.168.1.2 -w ~/..path../routes-large.kite -H 'access-token: AAAABBBBCCCCDD'
 
 == Scan through proxy == 
 
-kr scan http://192.168.1.2 -w /path/to/worldlist.kite --proxy=http://127.0.0.1:8080 
+kr scan http://192.168.1.2 -w ~/..path../routes-large.kite --proxy=http://127.0.0.1:8080 
 
 

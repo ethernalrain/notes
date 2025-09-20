@@ -1,0 +1,5 @@
+Tool for custom password list / dictionaries generation: 
+
+Mentalist
+https://github.com/sc0tfree/mentalist
+

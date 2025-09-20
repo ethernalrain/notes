@@ -1,0 +1,5 @@
+== Information gathering in Metasploit ==
+
+example: post/windows/gather/credentials/winscp
+
+

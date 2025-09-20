@@ -9,3 +9,12 @@ Ignore certain error code
 
 positive status codes
 	-s 200-202,301
+
+
+* Use wordlist from /path/to/word/list to try to detect hidden URIs on the given web server
+	
+	gobuster -e -u http://1.2.3.4:8080 w /path/to/world/list
+
+* Same as before, but also ignore 302 response codes and make sure to see 200, 202, 301 codes.
+
+	gobuster -e -u http://1.2.3.4:8080 w /path/to/world/list -x 200,202,301 -b 302

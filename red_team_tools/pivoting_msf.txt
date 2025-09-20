@@ -1,0 +1,51 @@
+== Pivoting ==
+
+Meang using one compromised system to get deeper into the systems not accessing otherwice.
+E.g. using previously accessed / exploited system as pivot points for further deeper pentest.
+
+
+== Route all metasploit traffic via specific meterpreter session ==
+
+	msf..> route add <dst> <mask> <session>
+
+		^
+		|
+	This is metasploit, not meterpreter command!
+
+	Ex:
+
+	msf..> router add 192.168.100.0 255.255.255.0 3
+
+And then for example scan via above route:
+
+	msf..> use scanner/portscan/tcp
+	msf..> set PORTS 1-1000
+	msf..> set RHOSTS 192.168.100.103
+	msf..> exploit
+
+
+NOTE re running exploits via pivot:	reverse_tcp is likely not going to work.
+Use bind_tcp payloads instead.
+
+
+== Socks proxy via pivot ==
+
+	ms> use auxilary/server/socks_proxy
+	msf..> show options
+	msf..> explit
+
+== Proxychains
+	-- tool to run any linux command via proxy:
+
+		/etc/proxychain.conf - change the port, etc.
+
+	# proxychain nmap -Pn -sT -sV ... 
+
+Proxychain redirects all TP connections made by the launched executable to run through 
+the proxy.
+
+Note: set version to 4a when running socks_proxy in msf;
+
+
+
+

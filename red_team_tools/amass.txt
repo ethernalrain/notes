@@ -25,16 +25,16 @@ Tool that allows searching for relevant intel, related hosts, domains, etc.
 
 3) Brute force relevant sub-domains with names from the file, saving results into the given dir
 
-	amass -enum -active -brute -w <wordlist_file> -d <taget_domain> --dir <directory> 
+	amass enum -active -brute -w <word-list-file> -d <target domain> -dir <directory name>
 
 4) Visualize the result from above 
 	
-	amass viz -enum -d3 -dir <dir> 
+	amass viz -enum -d3 -dir <directory name>
 
 5) Scan for intel by IP 
 
-	amass intel --addr <IP>
+	amass intel -addr <target IP addresses>
 
 6) Scan for intel by domain name, including whois data 
 
-	amass intel -d <target-domain> -whois 
+	amass intel -d <target domain> -whois

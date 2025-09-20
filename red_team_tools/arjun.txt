@@ -1,0 +1,27 @@
+==  Arjun is an open source Python-based API fuzzer developed specifically to discover web application parameters ==
+
+* Installation
+	cd /opt/
+	sudo git clone https://github.com/s0med3v/Arjun.git
+
+* Simple run
+
+	python3 /opt/Arjun/arjun.py -u http://target_address.com
+
+
+* Also save results into a json file 
+	
+	python3 /opt/Arjun/arjun.py -u http://target_address.com -o arjun_results.json
+
+* “Target is unable to process requests, try --stable switch.” - add this 
+					
+	python3 /opt/Arjun/arjun.py -u http://target_address.com -o arjun_results.json --stable
+
+
+* Target list from the file 
+	
+	python3 /opt/Arjun/arjun.py -i targets.txt
+
+* Json with additional arguments 
+					
+	arjun --headers "Content-Type: application/json" -u http://vulnhost.com/api/register -m JSON --include='{$arjun$}'

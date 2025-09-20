@@ -1,0 +1,14 @@
+== BAD STRINGS DATABASES ONLINE ==
+		
+SecLists:
+	https://github.com/danielmiessler/SecLists
+	
+	big-list-of-naughty-strings.txt in particular
+
+Fuzzdb:
+	https://github.com/fuzzdb-project/fuzzdb
+		
+Wfuzz:
+	https://github.com/xmendez/wfuzz
+
+	All_attack.txt in particular

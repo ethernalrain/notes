@@ -1,0 +1,7 @@
+== SSH Exec ==
+
+* Similar logic to PS_Exec.txt. Useful when you want to run meterpreter over ssh.
+
+	msf> use exploit/multi/ssh/sshexec
+
+

@@ -8,7 +8,11 @@ Search within a given hostname, ex;
 
 Search for documents / API responses mentioning particular content-type. userful for discovering API endpoints. Ex: 
 
-	content-type:application/json 
+	"content-type:application/json"
+
+	"content-type: application/json"
+	"content-type: application/xml"
+	"targetname.com" "content-type: application/json"
 
 3) "200 OK" 
 

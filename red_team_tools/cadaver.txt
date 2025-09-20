@@ -1,0 +1,9 @@
+== A WebDAV tool - cadaver ==
+
+Included with Kali. 
+
+cadaver http://193.168.68.100/webdav 
+username:wamp
+password: xmm
+dav:/webdav/
+

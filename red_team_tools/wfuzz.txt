@@ -6,9 +6,9 @@ Latest ver at: https://github.com/xmendez/wfuzz
 
 == Usage Examples == 
 
-wfuzz -d '{"email":"a@host.com","password":"FUZZ"}' --hc 405 -H 'Content-Type: application/json' -z file,/dictionary/rockyou.txt https://12.23.34.45:8910/api/auth 
+wfuzz -d '{"email":"a@email.com","password":"FUZZ"}' --hc 405 -H 'Content-Type: application/json' -z file,/dictionary/rockyou.txt http://1.2.3.4:8888/api/v2/auth
 
-    -d specifies POST data 
+	-d specifies POST data 
     
     Any strings FUZZ, FUZ2Z, etc will be replaced by the fuzzing payload 
 
@@ -31,4 +31,26 @@ Other options:
 
 	-u URL to attack 
 
- 
+
+Example2:
+	wfuzz -z file,/home/hapihacker/big-list-of-naughty-strings.txt -H "Content-Type: application/json" -H "x-access-token: [...]" -p 127.0.0.1:8080 --hc 400 -X PUT -d "{
+    	\"user\": \"FUZZ\",
+    	\"pass\": \"FUZZ\",
+    	\"id\": \"FUZZ\",
+    	\"name\": \"FUZZ\",
+    	\"is_admin\": \"FUZZ\",
+    	\"account_balance\": \"FUZZ\"
+	}" -u http://192.168.195.132:8090/api/user/edit_info
+	
+	-z - list of words from the file
+	-p -proxy
+	-H - request headers
+	--hc - hide code(s)
+	-X - specify method
+	-d - request body
+	-u - url to attack
+
+
+* fuzz for different methods given in the list 
+	
+	wfuzz -z list,GET-HEAD-POST-PUT-PATCH-TRACE-OPTIONS-CONNECT- -X FUZZ http://testsite.com/api/v2/account
