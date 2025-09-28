@@ -12,19 +12,17 @@ import ssl
 
 client_key = "client.key"
 client_cert = "client.crt"
-server_cert = "server.cert"
+server_cert = "server.crt"
 
 port = 8080
 hostname = '127.0.0.1'
 
 context = ssl.SSLContext(ssl.PROTOCOL_TLS, cafile=server_cert)
 context.load_cert_chain(certfile=client_cert, keyfile=client_key)
-context.verify_locations(cafile=server_cert)
+context.load_verify_locations(cafile=server_cert)
 
 context.verity_mode = ssl.CERT_REQUIRED
-context.options |= ssl.OP_SINGLE_ECHO_USE
-
-context.options |= ssl.OP_NO_TLSv1 | ssl.OP_NO_TLSv1_1 | ssl.OP_NO_TLSv1_2
+context.options |= ssl.OP_SINGLE_ECDH_USE
 
 with socket.create_connection((hostname, port)) as sock:
 
@@ -34,7 +32,8 @@ with socket.create_connection((hostname, port)) as sock:
 
 		print(s.version())
 
-		s.send("aaaa")
-		data = s.recv(1024)
+		s.send("aaaa".encode())
+		data = s.recv(1024).decode()
+		print(data)
 
 

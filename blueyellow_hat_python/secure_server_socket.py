@@ -11,7 +11,7 @@ import socket
 import ssl
 
 client_cert = "client.crt"
-server_cert = "server.cert"
+server_cert = "server.crt"
 server_key = "server.key"
 
 port = 8080
@@ -23,15 +23,18 @@ context.load_verify_locations(cafile=client_cert)
 
 context.load_cert_chain(certfile=server_cert, keyfile=server_key)
 
-context.options |= ssl.OP_SINGLE_ECDH_USE | ssl.OP_NO_TLSv1 | ssl.OP_NO_TLSv1_1 | ssl.OP_NO_TLSv1_2
+context.options |= ssl.OP_SINGLE_ECDH_USE
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM, o) as sock: 
-	sock.bind(('', port)) 
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+	sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+	sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+	sock.bind(('', port))
 	sock.listen(1)
 
-	with context.wrap_socket(sock, server_side=True) as ssock: 
+	with context.wrap_socket(sock, server_side=True) as ssock:
 		conn, addr = ssock.accept()
 		print(addr)
+
 		print(conn.recv(1024).decode())
-		conn.send("Hello".encode()) 
+		conn.send("Hello".encode())
 
